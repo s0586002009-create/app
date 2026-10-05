@@ -3,4 +3,6 @@
     <string name="beef">בשרי</string>
     <string name="dairy">חלבי</string>
     <string name="pareve">אני פרווה!</string>
+    <string name="tile_beef">אני פרווה! — בשרי</string>
+    <string name="tile_dairy">אני פרווה! — חלבי</string>
 </resources>

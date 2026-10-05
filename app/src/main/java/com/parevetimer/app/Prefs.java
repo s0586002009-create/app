@@ -10,6 +10,7 @@ public final class Prefs {
     public static final String START = "start";
     public static final String END = "end";
     public static final String DURATION = "duration";
+    public static final long MAX_WAIT_MS = 6L * 60L * 60L * 1000L;
     private Prefs() {}
 
     public static SharedPreferences get(Context context) {
@@ -17,11 +18,15 @@ public final class Prefs {
     }
 
     public static long getBeefMs(Context c) {
-        return get(c).getLong("beef_ms", 6L * 60L * 60L * 1000L);
+        return clampWait(get(c).getLong("beef_ms", MAX_WAIT_MS));
     }
 
     public static long getDairyMs(Context c) {
-        return get(c).getLong("dairy_ms", 60L * 60L * 1000L);
+        return clampWait(get(c).getLong("dairy_ms", MAX_WAIT_MS));
+    }
+
+    private static long clampWait(long value) {
+        return Math.max(60_000L, Math.min(MAX_WAIT_MS, value));
     }
 
     public static String getNotificationMode(Context c) {
@@ -33,6 +38,9 @@ public final class Prefs {
     }
 
     public static void setTimes(Context c, long beefMs, long dairyMs) {
-        get(c).edit().putLong("beef_ms", beefMs).putLong("dairy_ms", dairyMs).apply();
+        get(c).edit()
+                .putLong("beef_ms", clampWait(beefMs))
+                .putLong("dairy_ms", clampWait(dairyMs))
+                .apply();
     }
 }

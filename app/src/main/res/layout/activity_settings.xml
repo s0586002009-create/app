@@ -2,32 +2,43 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/bg" android:fillViewport="true">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:paddingStart="16dp" android:paddingTop="18dp"
-        android:paddingEnd="16dp" android:paddingBottom="28dp">
-        <TextView android:id="@+id/settings_title" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:gravity="center" android:text="הגדרות"
-            android:textColor="@color/text_primary" android:textSize="27sp" android:textStyle="bold"/>
-        <TextView android:id="@+id/settings_intro" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_marginTop="7dp" android:gravity="center"
-            android:text="בחר את זמני ההמתנה שנוחים לך" android:textColor="@color/text_secondary" android:textSize="14sp"/>
+        android:orientation="vertical" android:paddingStart="14dp" android:paddingTop="14dp"
+        android:paddingEnd="14dp" android:paddingBottom="28dp">
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" android:background="@drawable/bg_surface"
-            android:orientation="vertical" android:padding="14dp">
+            android:gravity="center_vertical">
+            <ImageButton android:id="@+id/home_button" android:layout_width="46dp" android:layout_height="46dp"
+                android:background="@android:color/transparent" android:src="@android:drawable/ic_menu_revert"
+                android:contentDescription="חזור למסך הבית" android:tint="@color/text_secondary"/>
+            <TextView android:id="@+id/settings_title" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:gravity="center" android:text="הגדרות"
+                android:textColor="@color/text_primary" android:textSize="27sp" android:textStyle="bold"/>
+            <View android:layout_width="46dp" android:layout_height="46dp"/>
+        </LinearLayout>
+
+        <TextView android:id="@+id/settings_intro" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:gravity="center"
+            android:text="בחר את זמני ההמתנה שנוחים לך — עד 6 שעות"
+            android:textColor="@color/text_secondary" android:textSize="14sp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="18dp" android:background="@drawable/bg_surface"
+            android:orientation="vertical" android:padding="12dp">
+
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="זמן המתנה" android:textColor="@color/text_primary" android:textSize="18sp" android:textStyle="bold"/>
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" android:text="סובב את המספרים ובחר שעות ודקות"
+                android:layout_marginTop="4dp" android:text="בחר שעות ודקות באמצעות הגלגלים"
                 android:textColor="@color/text_secondary" android:textSize="13sp"/>
 
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="18dp" android:text="בשרי" android:textColor="@color/beef_dark"
+                android:layout_marginTop="16dp" android:text="בשרי" android:textColor="@color/beef_dark"
                 android:textSize="16sp" android:textStyle="bold"/>
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:gravity="center" android:orientation="horizontal">
+                android:gravity="center" android:orientation="horizontal" android:layoutDirection="rtl">
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
                     android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-                    <NumberPicker android:id="@+id/beef_hours" android:layout_width="110dp"
+                    <NumberPicker android:id="@+id/beef_hours" android:layout_width="100dp"
                         android:layout_height="150dp" android:contentDescription="שעות בשרי"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="שעות" android:textColor="@color/text_secondary" android:textSize="12sp"/>
@@ -36,7 +47,7 @@
                     android:text=":" android:textColor="@color/text_primary" android:textSize="26sp" android:textStyle="bold"/>
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
                     android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-                    <NumberPicker android:id="@+id/beef_minutes" android:layout_width="110dp"
+                    <NumberPicker android:id="@+id/beef_minutes" android:layout_width="100dp"
                         android:layout_height="150dp" android:contentDescription="דקות בשרי"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="דקות" android:textColor="@color/text_secondary" android:textSize="12sp"/>
@@ -44,13 +55,13 @@
             </LinearLayout>
 
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="12dp" android:text="חלבי" android:textColor="@color/dairy_dark"
+                android:layout_marginTop="10dp" android:text="חלבי" android:textColor="@color/dairy_dark"
                 android:textSize="16sp" android:textStyle="bold"/>
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:gravity="center" android:orientation="horizontal">
+                android:gravity="center" android:orientation="horizontal" android:layoutDirection="rtl">
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
                     android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-                    <NumberPicker android:id="@+id/dairy_hours" android:layout_width="110dp"
+                    <NumberPicker android:id="@+id/dairy_hours" android:layout_width="100dp"
                         android:layout_height="150dp" android:contentDescription="שעות חלבי"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="שעות" android:textColor="@color/text_secondary" android:textSize="12sp"/>
@@ -59,7 +70,7 @@
                     android:text=":" android:textColor="@color/text_primary" android:textSize="26sp" android:textStyle="bold"/>
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
                     android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-                    <NumberPicker android:id="@+id/dairy_minutes" android:layout_width="110dp"
+                    <NumberPicker android:id="@+id/dairy_minutes" android:layout_width="100dp"
                         android:layout_height="150dp" android:contentDescription="דקות חלבי"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="דקות" android:textColor="@color/text_secondary" android:textSize="12sp"/>
@@ -68,12 +79,12 @@
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="14dp" android:background="@drawable/bg_surface"
-            android:orientation="vertical" android:padding="14dp">
+            android:layout_marginTop="12dp" android:background="@drawable/bg_surface"
+            android:orientation="vertical" android:padding="12dp">
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="התראה בסיום" android:textColor="@color/text_primary" android:textSize="18sp" android:textStyle="bold"/>
             <RadioGroup android:id="@+id/notification_group" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:layout_marginTop="5dp">
+                android:layout_height="wrap_content" android:layout_marginTop="4dp">
                 <RadioButton android:id="@+id/radio_system" android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:text="צליל מערכת" android:textColor="@color/text_primary" android:textSize="14sp"/>
                 <RadioButton android:id="@+id/radio_vibrate" android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -85,8 +96,8 @@
             </RadioGroup>
         </LinearLayout>
 
-        <Button android:id="@+id/save_button" android:layout_width="match_parent" android:layout_height="56dp"
-            android:layout_marginTop="16dp" android:backgroundTint="#315FAE"
+        <Button android:id="@+id/save_button" android:layout_width="match_parent" android:layout_height="54dp"
+            android:layout_marginTop="14dp" android:backgroundTint="#315FAE"
             android:text="שמור הגדרות" android:textColor="@color/white" android:textSize="16sp" android:textStyle="bold"/>
     </LinearLayout>
 </ScrollView>

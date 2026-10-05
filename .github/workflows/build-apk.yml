@@ -26,12 +26,10 @@ jobs:
         with:
           gradle-version: "8.9"
 
-      - name: Prepare Android SDK
+      - name: Verify Android SDK
         run: |
-          yes | sdkmanager --licenses >/dev/null || true
-
-      - name: Install Android SDK
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.1"
+          test -d "$ANDROID_HOME/platforms/android-34"
+          test -d "$ANDROID_HOME/build-tools/34.0.0"
 
       - name: Build debug APK
         run: gradle --no-daemon assembleDebug

@@ -11,7 +11,6 @@ public class TimerAlarmReceiver extends BroadcastReceiver {
         if (end > 0 && System.currentTimeMillis() + 1000L >= end) {
             Prefs.get(context).edit().putBoolean(Prefs.ACTIVE, false).apply();
             NotificationHelper.notifyFinished(context);
-            MainActivity.refreshWidgets(context);
         } else {
             TimerManager.restore(context);
         }

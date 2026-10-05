@@ -25,7 +25,6 @@ public final class TimerManager {
                 .putLong(Prefs.DURATION, duration)
                 .apply();
         scheduleAlarm(app, end);
-        MainActivity.refreshWidgets(app);
     }
 
     public static void cancel(Context context) {
@@ -33,8 +32,10 @@ public final class TimerManager {
         AlarmManager am = (AlarmManager) app.getSystemService(Context.ALARM_SERVICE);
         PendingIntent pi = alarmIntent(app);
         if (am != null) am.cancel(pi);
-        Prefs.get(app).edit().putBoolean(Prefs.ACTIVE, false).remove(Prefs.CATEGORY).remove(Prefs.START).remove(Prefs.END).remove(Prefs.DURATION).apply();
-        MainActivity.refreshWidgets(app);
+        Prefs.get(app).edit()
+                .putBoolean(Prefs.ACTIVE, false)
+                .remove(Prefs.CATEGORY).remove(Prefs.START)
+                .remove(Prefs.END).remove(Prefs.DURATION).apply();
     }
 
     public static boolean isActive(Context context) {
@@ -74,11 +75,11 @@ public final class TimerManager {
             return;
         }
         scheduleAlarm(c, end);
-        MainActivity.refreshWidgets(c);
     }
 
     private static PendingIntent alarmIntent(Context c) {
         Intent i = new Intent(c, TimerAlarmReceiver.class);
-        return PendingIntent.getBroadcast(c, REQUEST_ALARM, i, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        return PendingIntent.getBroadcast(c, REQUEST_ALARM, i,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 }

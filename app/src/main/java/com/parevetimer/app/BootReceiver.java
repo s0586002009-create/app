@@ -1,0 +1,1 @@
+package com.parevetimer.app;import android.content.*;public class BootReceiver extends BroadcastReceiver{@Override public void onReceive(Context c,Intent i){TimerManager.restore(c.getApplicationContext());}}

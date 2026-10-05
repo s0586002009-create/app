@@ -1,0 +1,1 @@
+package com.parevetimer.app; public class OnboardingActivity extends SettingsActivity { @Override protected boolean onboardingMode(){return true;} }

@@ -2,8 +2,8 @@ package com.parevetimer.app;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.*;
 import android.content.Intent;
+import android.widget.*;
 
 public class SettingsActivity extends Activity {
     protected boolean onboardingMode() { return false; }
@@ -19,9 +19,10 @@ public class SettingsActivity extends Activity {
 
         long beef = Prefs.getBeefMs(this);
         long dairy = Prefs.getDairyMs(this);
-        setPicker(bh, (int)(beef / 3600000L), 0, 24);
+
+        setPicker(bh, (int)(beef / 3600000L), 0, 6);
         setPicker(bm, (int)((beef / 60000L) % 60), 0, 59);
-        setPicker(dh, (int)(dairy / 3600000L), 0, 24);
+        setPicker(dh, (int)(dairy / 3600000L), 0, 6);
         setPicker(dm, (int)((dairy / 60000L) % 60), 0, 59);
 
         RadioGroup g = findViewById(R.id.notification_group);
@@ -33,10 +34,12 @@ public class SettingsActivity extends Activity {
         findViewById(R.id.save_button).setOnClickListener(v -> {
             long bms = (bh.getValue() * 60L + bm.getValue()) * 60000L;
             long dms = (dh.getValue() * 60L + dm.getValue()) * 60000L;
-            if (bms <= 0 || dms < 0) {
-                Toast.makeText(this, "נא לבחור זמן תקין", Toast.LENGTH_SHORT).show();
+
+            if (bms <= 0 || dms <= 0 || bms > Prefs.MAX_WAIT_MS || dms > Prefs.MAX_WAIT_MS) {
+                Toast.makeText(this, "נא לבחור זמן בין דקה ל־6 שעות", Toast.LENGTH_SHORT).show();
                 return;
             }
+
             String selected = g.getCheckedRadioButtonId() == R.id.radio_vibrate ? "vibrate" :
                     g.getCheckedRadioButtonId() == R.id.radio_custom1 ? "custom1" :
                     g.getCheckedRadioButtonId() == R.id.radio_custom2 ? "custom2" : "system";
@@ -54,6 +57,17 @@ public class SettingsActivity extends Activity {
             } else {
                 finish();
             }
+        });
+
+        findViewById(R.id.home_button).setOnClickListener(v -> {
+            if (onboardingMode()) {
+                startActivity(new Intent(this, MainActivity.class));
+            } else {
+                Intent i = new Intent(this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(i);
+            }
+            finish();
         });
 
         if (onboardingMode()) {

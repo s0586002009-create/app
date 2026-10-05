@@ -1,0 +1,14 @@
+<resources>
+    <color name="bg">#F6F8FC</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#152238</color>
+    <color name="text_secondary">#6B7688</color>
+    <color name="beef">#B63A3A</color>
+    <color name="beef_dark">#8F242A</color>
+    <color name="dairy">#3E78D6</color>
+    <color name="dairy_dark">#2355A9</color>
+    <color name="green">#2C9A67</color>
+    <color name="green_dark">#1F7550</color>
+    <color name="track">#E6EBF3</color>
+    <color name="white">#FFFFFF</color>
+</resources>
